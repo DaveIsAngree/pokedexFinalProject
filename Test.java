@@ -5,7 +5,8 @@ public class Test
    {
       
       
-      for (int i = 1; i<=5; i++){
+      for (int i = 1; i<=151; i++)
+      {
          Pokemon test = new Pokemon(Integer.toString(i));
          
          System.out.println("\n******************");

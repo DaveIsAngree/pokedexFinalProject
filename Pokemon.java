@@ -79,8 +79,34 @@ public class Pokemon
          this.evolution = s.getEvolution().getEvolutionName();
       else
          this.evolution = "Base Evolution";
-      this.flavorText = s.getFlavor_Text_Entries()[0].getFlavor_Text();
+      this.flavorText = s.getFlavor_Text_Entries()[findFlavorText(s.flavor_text_entries.length, s)].getFlavor_Text();
    }
+   
+   public int findFlavorText(int arrayLegnth, PokemonSupplementary s)
+   {
+      String enFlavorText = s.getFlavor_Text_Entries()[0].getLanguage().getLanguageName();
+      int indexLocation = 0;
+      
+      for (int i = 1; i < arrayLegnth; i++)
+         if (!enFlavorText.equals("en"))
+         {
+            enFlavorText = s.getFlavor_Text_Entries()[i].getLanguage().getLanguageName();
+            indexLocation++;
+         }
+         else
+            break;
+      
+      return indexLocation;
+      
+      /*
+      if (indexLocation == 0)
+         return indexLocation;
+      else
+         return indexLocation - 1;
+      */
+   }
+            
+         
    
    public String getName()
    {
