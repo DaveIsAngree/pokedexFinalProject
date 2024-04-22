@@ -115,6 +115,11 @@ public class Pokemon
          return "null";
    }
    
+   public String getSprite()
+   {
+      return sprite;
+   }
+   
    public String getFlavorText()
    {
       return flavorText;
