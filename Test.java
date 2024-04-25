@@ -5,7 +5,7 @@ public class Test
    {
       
       
-      for (int i = 1; i<=151; i++)
+      for (int i = 15; i<=20; i++)
       {
          Pokemon test = new Pokemon(Integer.toString(i));
          
@@ -18,6 +18,7 @@ public class Test
          System.out.println("Color: " + test.getColor());
          System.out.println("Evolves From: " + test.getEvolution());
          System.out.println(test.getFlavorText());
+         System.out.println(test.getTypes());
          System.out.println("******************\n");
          
       }
