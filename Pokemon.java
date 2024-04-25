@@ -1,5 +1,6 @@
 import java.net.URL;
 import java.util.Scanner;
+import java.util.ArrayList;
 import com.google.gson.Gson;
 import mainApi.PokemonMain;
 import subApi.PokemonSupplementary;
@@ -32,6 +33,9 @@ public class Pokemon
    private String color;
    /**The species from which the Pokemon evolves*/
    private String evolution;
+   /**The "types" for the Pokemon*/
+   private ArrayList<String> pokemonTypes = new ArrayList<String>();
+   
    
    
    /**
@@ -41,7 +45,7 @@ public class Pokemon
    */   
    public Pokemon (String pokemonQuery)
    {
-     
+   
       //IO try/catch
       try {
          URL url = new URL("https://pokeapi.co/api/v2/pokemon/" + pokemonQuery);
@@ -79,9 +83,20 @@ public class Pokemon
          this.evolution = s.getEvolution().getEvolutionName();
       else
          this.evolution = "Base Evolution";
-      this.flavorText = s.getFlavor_Text_Entries()[findFlavorText(s.flavor_text_entries.length, s)].getFlavor_Text();
+      
+      this.flavorText = s.getFlavor_Text_Entries()[findFlavorText(s.getFlavor_Text_Entries().length, s)].getFlavor_Text();
+      this.pokemonTypes = setTypes(p.getTypes().length, p);
+      
+
    }
    
+   public ArrayList<String> setTypes(int arrayLegnth, PokemonMain p)
+   {
+      for (int i = 0; i < arrayLegnth; i++)
+         pokemonTypes.add(p.getTypes()[i].getType().getTypeName());
+      return pokemonTypes;
+   }
+      
    public int findFlavorText(int arrayLegnth, PokemonSupplementary s)
    {
       String enFlavorText = s.getFlavor_Text_Entries()[0].getLanguage().getLanguageName();
@@ -98,12 +113,6 @@ public class Pokemon
       
       return indexLocation;
       
-      /*
-      if (indexLocation == 0)
-         return indexLocation;
-      else
-         return indexLocation - 1;
-      */
    }
             
          
@@ -150,6 +159,12 @@ public class Pokemon
    {
       return flavorText;
    }
+   
+   public ArrayList<String> getTypes()
+   {
+      return pokemonTypes;
+   }
+   
 
 
 }

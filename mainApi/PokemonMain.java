@@ -8,6 +8,7 @@ public class PokemonMain {
    public Sprites sprites;
    public int weight;
    public Species species;
+   public Types[] types;
    
    
    public int getHeight() {
@@ -33,6 +34,10 @@ public class PokemonMain {
    
    public Species getSpecies () {
       return species;
+   }
+   
+   public Types[] getTypes(){
+      return types;
    }
    
    
