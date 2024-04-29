@@ -24,6 +24,7 @@ public class PokedexApp extends Application {
     public void start(Stage primaryStage) {
         //initialize GUI components
         searchField = new TextField();
+        searchField.setPromptText("Enter a Pokémon name or ID to search");
         searchButton = new Button("Search");
         randomButton = new Button("Random Pokémon");
         displayArea = new TextArea();
