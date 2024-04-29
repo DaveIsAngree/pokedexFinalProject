@@ -63,7 +63,7 @@ public class PokedexApp extends Application {
         root.setStyle("-fx-background-color: #FF0000;"); // Red background
 
         //creates scene and sets stage
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(root, 800, 600); //Increased width to 800 pixels
         scene.setFill(Color.RED); //sets scene background color as red
         primaryStage.setScene(scene);
         primaryStage.setTitle("Pokédex");
