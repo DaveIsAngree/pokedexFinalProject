@@ -37,7 +37,7 @@ public class PokedexApp extends Application {
         darkModeToggle.setOnAction(e -> toggleDarkMode());
 
         //title text
-        Text titleText = new Text("Kanto Region Pokédex");
+        Text titleText = new Text("Pokédex");
         titleText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
         titleText.setFill(Color.YELLOW);
         titleText.setStroke(Color.BLUE);
@@ -86,7 +86,7 @@ public class PokedexApp extends Application {
 
     private void getRandomPokemon() {
         Random random = new Random();
-        int randomId = random.nextInt(151) + 1; //generates random ID between 1 and 151 (representing the first 151 pokemon)
+        int randomId = random.nextInt(1025) + 1; //generates random ID between 1 and 1025 (there are currently 1025 pokemon)
         try {
             Pokemon pokemon = new Pokemon(String.valueOf(randomId));
             displayPokemonDetails(pokemon);
