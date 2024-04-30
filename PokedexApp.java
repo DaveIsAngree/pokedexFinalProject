@@ -109,11 +109,8 @@ public class PokedexApp extends Application {
 
     private void displayPokemonDetails(Pokemon pokemon) {
         //converts height from decimeters to feet and inches
-        int heightDm = pokemon.getHeight();
-        int feet = heightDm / 30;  // 1 foot = 30 centimeters (decimeters)
-        int inches = (int) Math.round((heightDm % 30) * 0.394);  // 1 inch = 0.394 centimeters (decimeters)
-
-
+        int feet = pokemon.getHeight()/3;
+        int inches = (int) Math.floor((pokemon.getHeight()%3) / .25);
 
         displayArea.setText("Name: " + pokemon.getName() + "\n" +
                 "ID: " + pokemon.getId() + "\n" +
