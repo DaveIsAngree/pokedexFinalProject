@@ -26,7 +26,7 @@ public class Pokemon
    /**The name of the Pokemon*/
    private String name;
    /**The weight of the Pokemon*/
-   private int weight;
+   private double weight;
    /**The URL address for the sprite of the Pokemon*/
    private String sprite;
    /**The flavor text (description) of the Pokemon*/
@@ -79,7 +79,7 @@ Creates a Pokemon object by passing the Pokemon's name or ID number to the API
       this.name = p.name.substring(0, 1).toUpperCase() + p.name.substring(1);
       this.id = p.getId();
       this.height = p.getHeight();
-      this.weight = p.getWeight();
+      this.weight = p.getWeight() * 0.220462; // 1 hg = 0.220462 lbs
       this.sprite = p.getSprites().getOther().getOfficialArtwork().getFront_Default();
       this.color = s.getColor().getColorName();
       if (s.evolves_from_species != null)
@@ -163,12 +163,12 @@ Returns the height of the Pokemon
       return height;
    }
    
-   public int getWeight()
 /**
 Returns the weight of the Pokemon
 
 @return the weight of the Pokemon
 */
+   public double getWeight()
    {
       return weight;
    }
