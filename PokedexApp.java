@@ -39,6 +39,7 @@ public class PokedexApp extends Application {
         Preferences prefs = Preferences.userNodeForPackage(PokedexApp.class);
         boolean darkModeEnabled = prefs.getBoolean(DARK_MODE_KEY, false);
         darkModeToggle.setSelected(darkModeEnabled);
+        toggleDarkMode();
 
 
         //event handlers
