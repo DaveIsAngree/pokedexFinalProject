@@ -114,7 +114,7 @@ public class PokedexApp extends Application {
                 String.format("Height: %d ft %.1f inches\n", feet, inches) +
                 String.format("Weight: %.1f lbs\n", weightLbs) +
                 "Types: " + String.join(", ", pokemon.getTypes()) + "\n" +
-                "Flavor Text: " + pokemon.getFlavorText());
+                "Description: " + pokemon.getFlavorText());
 
         //load and displays sprite image
         Image spriteImage = new Image(pokemon.getSprite());
