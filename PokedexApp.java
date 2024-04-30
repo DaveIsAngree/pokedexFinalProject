@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
 import java.util.Random;
+import java.util.prefs.Preferences;
 
 public class PokedexApp extends Application {
 
@@ -20,6 +21,7 @@ public class PokedexApp extends Application {
     private TextArea displayArea;
     private ImageView spriteImageView;
     private CheckBox darkModeToggle;
+    private static final String DARK_MODE_KEY = "darkModeEnabled";
 
     @Override
     public void start(Stage primaryStage) {
@@ -32,6 +34,12 @@ public class PokedexApp extends Application {
         displayArea.setEditable(false);
         spriteImageView = new ImageView();
         darkModeToggle = new CheckBox("Dark Mode");
+
+        // retrieves user preference for dark mode
+        Preferences prefs = Preferences.userNodeForPackage(PokedexApp.class);
+        boolean darkModeEnabled = prefs.getBoolean(DARK_MODE_KEY, false);
+        darkModeToggle.setSelected(darkModeEnabled);
+
 
         //event handlers
         searchButton.setOnAction(e -> searchPokemon());
@@ -101,8 +109,10 @@ public class PokedexApp extends Application {
 
     private void displayPokemonDetails(Pokemon pokemon) {
         //converts height from decimeters to feet and inches
-        int feet = pokemon.getHeight()/3;
-        int inches = (int) Math.floor((pokemon.getHeight()%3) / .25);
+        int heightDm = pokemon.getHeight();
+        int feet = heightDm / 30;  // 1 foot = 30 centimeters (decimeters)
+        int inches = (int) Math.round((heightDm % 30) * 0.394);  // 1 inch = 0.394 centimeters (decimeters)
+
 
 
         displayArea.setText("Name: " + pokemon.getName() + "\n" +
@@ -118,6 +128,10 @@ public class PokedexApp extends Application {
     }
 
     private void toggleDarkMode() {
+        boolean darkModeEnabled = darkModeToggle.isSelected();
+        Preferences prefs = Preferences.userNodeForPackage(PokedexApp.class);
+        prefs.putBoolean(DARK_MODE_KEY, darkModeEnabled);
+        
         if (darkModeToggle.isSelected()) {
             //applys dark mode CSS
             displayArea.setStyle("-fx-control-inner-background: #333333; -fx-text-fill: white;");
