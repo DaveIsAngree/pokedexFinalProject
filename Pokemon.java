@@ -25,6 +25,7 @@ public class Pokemon
    private String name;
    /**The weight of the Pokemon*/
    private int weight;
+   private double weight;
    /**The URL address for the sprite of the Pokemon*/
    private String sprite;
    /**The flavor text (description) of the Pokemon*/
@@ -77,6 +78,7 @@ public class Pokemon
       this.id = p.getId();
       this.height = p.getHeight();
       this.weight = p.getWeight();
+      this.weight = p.getWeight() * 0.220462; // 1 hg = 0.220462 lbs
       this.sprite = p.getSprites().getOther().getOfficialArtwork().getFront_Default();
       this.color = s.getColor().getColorName();
       if (s.evolves_from_species != null)
@@ -132,7 +134,16 @@ public class Pokemon
       return height;
    }
    
+<<<<<<< Updated upstream
    public int getWeight()
+=======
+/**
+Returns the weight of the Pokemon
+
+@return the weight of the Pokemon
+*/
+   public double getWeight()
+>>>>>>> Stashed changes
    {
       return weight;
    }

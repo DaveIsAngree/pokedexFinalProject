@@ -10,6 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.Screen;
 import java.util.Random;
 
 public class PokedexApp extends Application {
@@ -64,7 +65,7 @@ public class PokedexApp extends Application {
         root.setStyle("-fx-background-color: #FF0000;"); // Red background
 
         //creates scene and sets stage
-        Scene scene = new Scene(root, 800, 600); //Increased width to 800 pixels
+        Scene scene = new Scene(root, 800, Screen.getPrimary().getBounds().getHeight()*.9); //Increased width to 800 pixels
         scene.setFill(Color.RED); //sets scene background color as red
         primaryStage.setScene(scene);
         primaryStage.setTitle("Pokédex");
@@ -100,19 +101,14 @@ public class PokedexApp extends Application {
 
     private void displayPokemonDetails(Pokemon pokemon) {
         //converts height from decimeters to feet and inches
-        int heightDm = pokemon.getHeight();
-        double heightFt = heightDm / 30.48; // 1 dm = 0.0328084 ft
-        int feet = (int) heightFt;
-        double inches = (heightFt - feet) * 12;
+        int feet = pokemon.getHeight()/3;
+        int inches = (int) Math.floor((pokemon.getHeight()%3) / .25);
 
-        //converts weight from hectograms to pounds
-        int weightHg = pokemon.getWeight();
-        double weightLbs = weightHg * 0.220462; // 1 hg = 0.220462 lbs
 
         displayArea.setText("Name: " + pokemon.getName() + "\n" +
                 "ID: " + pokemon.getId() + "\n" +
-                String.format("Height: %d ft %.1f inches\n", feet, inches) +
-                String.format("Weight: %.1f lbs\n", weightLbs) +
+                "Height: " + feet + "\' " + inches + "\"" + "\n" +
+                String.format("Weight: %.1f lbs\n", pokemon.getWeight()) +
                 "Types: " + String.join(", ", pokemon.getTypes()) + "\n" +
                 "Description: " + pokemon.getFlavorText());
 
