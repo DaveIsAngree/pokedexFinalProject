@@ -84,7 +84,7 @@ public class PokedexApp extends Application {
         String input = searchField.getText().trim();
         if (!input.isEmpty()) {
             try {
-                Pokemon pokemon = new Pokemon(input);
+                Pokemon pokemon = new Pokemon(input.toLowerCase());
                 displayPokemonDetails(pokemon);
             } catch (Exception e) {
                 displayArea.setText("Pokemon not found.");
